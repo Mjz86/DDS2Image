@@ -1,5 +1,10 @@
 #pragma once
 
+#include <bit>
+#include <fstream>
+#include <memory>
+#include <span>
+#include <string_view>
 #include "BinaryReader.h"
 #include <vector>
 #include <cstdint>
@@ -52,7 +57,7 @@ protected:
      *
      * @param data Data representing the pixels
      */
-    virtual void processPixels(std::vector<uint32_t> *data) = 0;
+    virtual void processPixels(std::span<uint32_t> data) = 0;
 
 public:
     /**
