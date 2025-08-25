@@ -36,14 +36,6 @@ Result convertBuffer(std::span<const uint8_t> buffer) {
 
 void savePNG(std::string_view filename, std::span<uint32_t> rgbaPixels,
              int width, int height) {
-  for (uint32_t &pixel : rgbaPixels) {
-    uint8_t r = (pixel >> 24) & 0xFF;
-    uint8_t g = (pixel >> 16) & 0xFF;
-    uint8_t b = (pixel >> 8) & 0xFF;
-    uint8_t a = pixel & 0xFF;
-    pixel = std::bit_cast<uint32_t>(std::array{r, g, b, a});
-  }
-
   stbi_write_png(filename.data(), width, height, 4,
                  reinterpret_cast<uint8_t *>(rgbaPixels.data()), width * 4);
 }

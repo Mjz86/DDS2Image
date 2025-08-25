@@ -50,7 +50,8 @@ protected:
             const uint32_t destIndex = (y + bY) * width + (x + bX);
             if (data.size() <= destIndex)
               throw std::out_of_range{"processPixels buffer was too small"};
-            data[destIndex] = colorTable[colorIndex] & 0xFFFFFF00 | alpha8;
+            data[destIndex] =
+                setPixelRGBA(colorTable[colorIndex] & 0xFFFFFF00 | alpha8);
           }
         }
       }
